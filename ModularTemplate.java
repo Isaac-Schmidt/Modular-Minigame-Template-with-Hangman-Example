@@ -18,7 +18,10 @@ public class ModularTemplate {
         while(!play.equals("Y") && !play.equals("N")){
             System.out.println("Do you wish to play " + gameName + "? [(y)es or (n)o]");
             play = sc.nextLine().toUpperCase();
-            if(play.equals("Y")){
+            if(play.equals("QUIT")){
+                System.exit(0);
+            }
+            else if(play.equals("Y")){
                 resetGame();
                 playing = true;
             }
@@ -30,12 +33,11 @@ public class ModularTemplate {
                 System.out.println("Invalid input");
             }
         }
-        sc.close();
 
         //Main Game loop
         while(playing){
 
-            playing = false;
+            playing = playAgain();
         }
     }
 
@@ -47,9 +49,10 @@ public class ModularTemplate {
     }
 
     /*
-    Called before every game to set word and attempts
+    Called before every game to set game state
      */
     private void resetGame(){
+
         String setType = "";
         Scanner sc = new Scanner(System.in);
 
@@ -57,7 +60,10 @@ public class ModularTemplate {
             System.out.println("Please choose whether you would like to play with [custom] settings or [default] settings");
             setType = sc.nextLine().toUpperCase();
 
-            if (setType.equals("CUSTOM")) {
+            if(setType.equals("QUIT")){
+                System.exit(0);
+            }
+            else if (setType.equals("CUSTOM")) {
                 //player inputs custom settings here
             } else if (setType.equals("DEFAULT")) {
                 //default settings are set
@@ -66,7 +72,32 @@ public class ModularTemplate {
                 //error given
             }
         }
-        sc.close();
+    }
+
+    private boolean playAgain(){
+
+        Scanner sc = new Scanner(System.in);
+        String again = "";
+
+        while(!(again.equals("Y") || again.equals("N"))){
+            System.out.println("Would you like to play again? [(y)es or (n)o]");
+            again = sc.nextLine().toUpperCase();
+            if(again.equals("QUIT")){
+                System.exit(0);
+            }
+            else if(again.equals("Y")){
+                resetGame();
+                return true;
+            }
+            else if(again.equals("N")){
+                System.out.println("Leaving " + gameName);
+                return false;
+            }
+            else{
+                System.out.println("Invalid input.");
+            }
+        }
+        return false;
     }
 
 }

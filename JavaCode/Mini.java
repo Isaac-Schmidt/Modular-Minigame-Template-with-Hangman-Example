@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Mini {
-
+ 
     private static String[] gameList = new String[] {"hangman"};
 
     public static void main(String[] args) {

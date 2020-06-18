@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-
+ 
 public class ModularTemplate {
     private Scanner sc;
     public final String gameName = "Minigame";//identifies game. Replace with appropriate value.
